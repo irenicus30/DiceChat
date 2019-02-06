@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  .container
+    h1= title
+    .panel.panel-default
+      .panel-body
+          .row
+            .col-sm-6
+                .row
+                  .col-sm-3
+                    button.btn.btn-secondary(onclick='roll('+JSON.stringify(diceList)+')') Roll!
+                  .col-sm-9
+                    div(id='rolledResult')
+                ul.list-unstyled.row
+                  each dice in diceList
+                      li.col-sm-6
+                        .form-group
+                          .btn-group(role='group')
+                            button.btn.btn-light(type='button', onclick='modifyOptionFromSelect(-1, '+JSON.stringify(dice.name)+');')
+                              span.octicon.octicon-dash
+                            button.btn.btn-light(type='button', disabled='true')
+                              img.img-responsive(src=dice.imagePath, height='40', alt='k4')
+                            button.btn.btn-light(type='button', onclick='modifyOptionFromSelect(1, '+JSON.stringify(dice.name)+');')
+                              span.octicon.octicon-plus
+                            select.selectpicker(id=dice.name)
+                              - var i = 0;
+                              while i <= 10
+                                if dice.name==="k6" && i==1
+                                  option(selected="selected")= i++
+                                else
+                                  option= i++
+                              
+
+            .col-sm-6
+              | One of two columns
