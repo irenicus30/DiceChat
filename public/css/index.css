@@ -1,0 +1,8 @@
+.pre-scrollable {
+    max-height: 600px;
+    overflow-y: scroll;
+}
+
+.btn-lg {
+    width: 100%;
+}

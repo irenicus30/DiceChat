@@ -10,14 +10,13 @@ var MessageSchema = new Schema ({
 });
 
 MessageSchema.virtual('full_message').get(function() {
-    var s = "";
+    var s = '[' + moment(this.date).format('MMM Do YY, h:mm:ss a') + ', ';
     if(this.username) {
         s += this.username;
     } else {
         s += 'anonymous';
     }
-    s += ': ' + this.text;
-    s = moment(this.date).format('lll') + ' '+ s;
+    s += ']<br>' + this.text;
     return s;
 });
 

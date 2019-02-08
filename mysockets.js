@@ -1,21 +1,11 @@
 var socket = require('socket.io');
-var mongoose = require('mongoose');
 var Message = require('./models/message');
-
-mongoose.connect('mongodb://localhost/chat');
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-    console.log('db opened');
-});
-
 
 
 function mysockets(server) {
     var io = socket(server);
     io.on('connection', onConnection);
-
-
+    var app = null;
 
     function onConnection(socket) {
         console.log('New user connected');
@@ -36,7 +26,6 @@ function mysockets(server) {
           var message = new Message({
             username: socket.username,
             text: data.message,
-            authenticated: false,
             date: currentDate
           });
 
@@ -50,14 +39,17 @@ function mysockets(server) {
 
         //send all previous messages
         Message.find()
+          .sort({'date': -1})
+          .limit(5)
           .exec(function(err, messageHistory) {
-            for(singleMessage of messageHistory) {
+            socket.emit('clear_messages');
+            for(let i=messageHistory.length-1; i>=0 ; i--) {
+              let singleMessage = messageHistory[i];
               socket.emit('new_message', {full_message: singleMessage.full_message});
             }
           });
 
       };
-
 }
 
 

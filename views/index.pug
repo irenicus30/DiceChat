@@ -6,11 +6,17 @@ block content
     .panel.panel-default
       .panel-body
           .row
-            .col-sm-6
+
+
+            .col-sm-8
                 .row
-                  .col-sm-3
-                    button.btn.btn-secondary(onclick='roll('+JSON.stringify(diceList)+')') Roll!
-                  .col-sm-9
+                  .col-sm-4
+                    .btn-group(role='group')
+                      button.btn.btn-secondary#roll(onclick='roll('+JSON.stringify(diceList)+')') Roll!
+                      button.btn.btn-secondary(onclick='reset()') Reset
+                  .col-sm-4
+                    div(id='rolledQuery')
+                  .col-sm-4
                     div(id='rolledResult')
                 ul.list-unstyled.row
                   each dice in diceList
@@ -32,5 +38,12 @@ block content
                                   option= i++
                               
 
-            .col-sm-6
-              | One of two columns
+            .col-sm-4
+              .pre-scrollable
+                section
+                  #change_username
+                    input.form-control#username(type='text', placeholder='anonymous')
+                    button.btn.btn-light.btn-lg#send_username(type='button') Change username
+                section#chatroom
+                  section#feedback
+

@@ -2,8 +2,9 @@ var express = require('express');
 var router = express.Router();
 var Dice = require('../models/dice');
 
-/* GET users listing. */
+/* PORT roll. */
 router.post('/', function(req, res, next) {
+    console.log(req.headers['content-type'])
     var diceToRoll = JSON.parse(req.body.diceToRoll);
     result = []  
     //query for all dices
