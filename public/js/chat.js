@@ -31,13 +31,13 @@ $(function() {
         messagesLoaded += 1;
         console.log("messagesLoaded: " + messagesLoaded);
         let text =  data.message.text;
-        let date = new Date(data.message.date);
-        let dateFormatted = formatAMPM(date);
+        let username = data.message.username;
+        let date = moment(data.message.date).fromNow();
 
         control = 
                         '<div class="direct-chat-info clearfix">' +
-                            '<span class="direct-chat-name float-left">'+data.message.username+'</span>' +
-                            '<span class="direct-chat-timestamp float-right">'+data.message.date+'</span>' +
+                            '<span class="direct-chat-name float-left"><small>'+username+'</small></span>' +
+                            '<span class="direct-chat-timestamp float-right"><small>'+date+'</small></span>' +
                         '</div>' +
                         '<div class="direct-chat-text">' +
                             text +
@@ -51,13 +51,13 @@ $(function() {
         messagesLoaded += 1;
         console.log("messagesLoaded: " + messagesLoaded);
         let text =  data.message.text;
-        let date = new Date(data.message.date);
-        let dateFormatted = formatAMPM(date);
+        let username = data.message.username;
+        let date = moment(data.message.date).fromNow();
 
         control = 
                         '<div class="direct-chat-info clearfix">' +
-                            '<span class="direct-chat-name float-left">'+data.message.username+'</span>' +
-                            '<span class="direct-chat-timestamp float-right">'+data.message.date+'</span>' +
+                            '<span class="direct-chat-name float-left"><small>'+username+'</small></span>' +
+                            '<span class="direct-chat-timestamp float-right"><small>'+date+'</small></span>' +
                         '</div>' +
                         '<div class="direct-chat-text">' +
                             text +
@@ -90,18 +90,6 @@ $(function() {
 });
 
 
-
-function formatAMPM(date) {
-    var hours = date.getHours();
-    var minutes = date.getMinutes();
-    var ampm = hours >= 12 ? 'PM' : 'AM';
-    hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
-    minutes = minutes < 10 ? '0'+minutes : minutes;
-    var strTime = hours + ':' + minutes + ' ' + ampm;
-
-    return strTime;
-  } 
 
 function GetScrollerEndPoint()
 {
