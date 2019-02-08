@@ -12,8 +12,8 @@ block content
                 .row
                   .col-sm-4
                     .btn-group(role='group')
-                      button.btn.btn-secondary#roll(onclick='roll('+JSON.stringify(diceList)+')') Roll!
-                      button.btn.btn-secondary(onclick='reset()') Reset
+                      button.btn.btn-primary#roll(onclick='roll('+JSON.stringify(diceList)+')') Roll!
+                      button.btn.btn-primary(onclick='reset()') Reset
                   .col-sm-4
                     div(id='rolledQuery')
                   .col-sm-4
@@ -38,12 +38,15 @@ block content
                                   option= i++
                               
 
-            .col-sm-4
-              .pre-scrollable
-                section
-                  #change_username
-                    input.form-control#username(type='text', placeholder='anonymous')
-                    button.btn.btn-light.btn-lg#send_username(type='button') Change username
-                section#chatroom
-                  section#feedback
+            .col-sm-4.frame.bg-light
+              #change_username
+                input.form-control#username(type='text', placeholder='anonymous user')
+                button.btn.btn-primary.btn-lg#send_username(type='button') Change username
+              .pre-scrollable#myscrollable
+                .chat.direct-chat-messages#chatroom                  
+              div
+                input.form-control#message(type='text', placeholder='type message')
+                button.btn.btn-primary.btn-lg#send_message(type='button') Send
+
+                
 

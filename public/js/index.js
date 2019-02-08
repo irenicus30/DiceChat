@@ -48,7 +48,7 @@ function showResult(data) {
 
     let unorderedlist = document.createElement('ul')
     unorderedlist.className = "list-unstyled row";
-    var messageString = "";
+    var messageString = "roll: ";
     for(let row of data) {
         let stringToDisplay = row.name + ": " + row.rolledValues[0];
         messageString += row.name + ": " + row.rolledValues[0] + ", ";
