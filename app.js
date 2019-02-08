@@ -16,7 +16,8 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
     console.log('db opened');
 });
-mongoose.connect('mongodb://localhost/dicechat');
+var mongoDB = 'mongodb://irenicus30:irenicus30@ds127545.mlab.com:27545/dicechat' ||  process.env.MONGODB_URI;
+mongoose.connect(mongoDB);
 
 var app = express();
 
