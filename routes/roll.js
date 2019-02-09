@@ -26,7 +26,9 @@ router.post('/', function(req, res, next) {
                         }
                         result.push({
                             name: dice.name,
-                            rolledValues: rolledValues
+                            rolledValues: rolledValues,
+                            type: dice.type,
+                            imagePath: dice.imagePath
                         });
                     }
                 }

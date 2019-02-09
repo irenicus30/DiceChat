@@ -13,7 +13,7 @@ block content
                   .col-sm-4
                     .btn-group(role='group')
                       button.btn.btn-primary#roll(onclick='roll('+JSON.stringify(diceList)+')') Roll!
-                      button.btn.btn-primary(onclick='reset()') Reset
+                      button.btn.btn-primary(onclick='reset('+JSON.stringify(diceList)+')') Reset
                   .col-sm-4
                     div(id='rolledQuery')
                   .col-sm-4

@@ -303,4 +303,9 @@ body
     margin: 5px 0 0 50px;
     padding: 5px 10px;
     position: relative;
+    font-size: 125%;
+}
+img {
+    max-width: 32px;
+    max-height: 32px;
 }

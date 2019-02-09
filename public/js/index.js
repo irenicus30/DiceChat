@@ -48,16 +48,23 @@ function showResult(data) {
 
     let unorderedlist = document.createElement('ul')
     unorderedlist.className = "list-unstyled row";
-    var messageString = "roll: ";
+    var messageString = "ROLL:<br/>";
     for(let row of data) {
+        if( row.type=="descent") {
+            for(let i=0; i<row.rolledValues.length; i++) {
+                let fullImagePath = row.imagePath.substring(0, row.imagePath.length-4) + row.rolledValues[i] + '.png';
+                row.rolledValues[i] = '<img src='+fullImagePath+'></img>';
+            }
+        }
         let stringToDisplay = row.name + ": " + row.rolledValues[0];
-        messageString += row.name + ": " + row.rolledValues[0] + ", ";
+        messageString += row.name + ": " + row.rolledValues[0];
         for(let i=1; i<row.rolledValues.length; i++) {
             stringToDisplay += ", " + row.rolledValues[i];
-            messageString += row.rolledValues[i] + ", ";
+            messageString += ", " + row.rolledValues[i];
         }
-        let listelement = document.createElement('li')
-        listelement.appendChild(document.createTextNode(stringToDisplay));
+        messageString += '<br/>';
+        let listelement = document.createElement('li');
+        listelement.innerHTML = stringToDisplay;
         listelement.className="col-sm-12";
         unorderedlist.appendChild(listelement);
     }
@@ -100,7 +107,9 @@ function showQuery(diceToRoll) {
     $("#rolledQuery").append(panel)
 }
 
-function reset() {
+function reset(diceList) {
     $("#rolledResult").empty();
-    $("#rolledQuery").empty();    
+    $("#rolledQuery").empty();
+    for(let dice of diceList)
+        modifyOptionFromSelect(-10, dice.name);
 }

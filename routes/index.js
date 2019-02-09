@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
   var diceList = [];
   //query for all dices
   Dice.find()
-    .sort("value")
+    .sort("order")
     .exec(function(err, dices) {
       for(dice of dices) {
         diceList.push(dice);
